@@ -1,9 +1,23 @@
 import os
 import openai
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+"""
+- Política de seguridad CORS para permitir el acceso a recursos desde cualquier origen, 
+con cualquier método y cualquier cabecera (Segun lo configurado)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],        # O reemplaza "*" con la lista de orígenes permitidos.
+    allow_methods=["*"],        # O reemplaza "*" con la lista de métodos permitidos (por ejemplo, ["GET", "POST"]).
+    allow_headers=["*"],        # O reemplaza "*" con la lista de encabezados permitidos.
+    allow_credentials=True,     # Habilita la inclusión de credenciales (cookies, encabezados de autorización, etc.).
+    expose_headers=["*"],       # O reemplaza "*" con la lista de encabezados expuestos.
+)
+"""
 
 @app.get("/")
 def root():
