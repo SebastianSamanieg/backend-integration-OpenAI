@@ -16,14 +16,12 @@ def root():
 def chat(pregunta: dict):
     openai.api_key = "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"
 
-    print(pregunta)
-
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
             {
                 "role": "user",
-                "content": "Quien es Messi?"
+                "content": pregunta["pregunta"]
             }
         ],
         temperature=1,
@@ -32,7 +30,6 @@ def chat(pregunta: dict):
         frequency_penalty=0,
         presence_penalty=0
     )
-    print(response)
     return {
-        "Service": "Esta intentando chatear"
+        "respuesta": response["choices"][0]["message"]["content"]
     }
