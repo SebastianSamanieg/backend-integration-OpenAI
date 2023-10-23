@@ -18,18 +18,14 @@ app.add_middleware(
     expose_headers=["*"],       # O reemplaza "*" con la lista de encabezados expuestos.
 )
 """
-
 @app.get("/")
 def root():
     return {
         "Service": "Integracion Back OpenIA"
     }
-
-
 @app.post("/chat")
 def chat(pregunta: dict):
-    openai.api_key = "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"
-
+    openai.api_key = os.getenv("API-KEY")
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
