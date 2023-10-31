@@ -21,6 +21,12 @@ app.add_middleware(
 )
 @app.get("/")
 def root():
+    """
+    Devuelve un mensaje de bienvenida.
+
+    Returns:
+        Un diccionario con un mensaje de bienvenida.
+    """
     return {
         "Service": "Integracion Back OpenIA"
     }
@@ -38,6 +44,15 @@ respuestas_entrenador_pokemon = [
 
 @app.post("/chat")
 def chat(pregunta: dict):
+    """
+    Realiza una conversación con el modelo de chat de OpenAI para responder preguntas relacionadas con Pokémon.
+
+    Args:
+        pregunta: Un diccionario que contiene la pregunta relacionada con Pokémon.
+
+    Returns:
+        Un diccionario con la respuesta generada por el modelo de chat y una respuesta aleatoria de entrenador Pokémon.
+    """
     openai.api_key = os.getenv("API-KEY")
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
